@@ -6,11 +6,16 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding b;
     private static final String TAG = "MainActivity";
+    String ctr = "";
+    Drawable flag;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -73,19 +80,36 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String a = result.getContents().replaceAll(" ", "").trim().substring(0, 3);
                 int b = Integer.parseInt(a);
-                int c = Integer.parseInt("s32");
+//                int c = Integer.parseInt("s32");
                 Log.e(TAG, "onActivityResult: " + a);
                 Log.e(TAG, "onActivityResult: " + b);
-                Log.e(TAG, "onActivityResult: " + c);
+//                Log.e(TAG, "onActivityResult: " + c);
+                showFlag(b,result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
+    public void showFlag(int code, String fullnumber){
+        flag=null;
+        String country="Origin: "+getCountry(code);
+        String fullcode="The code is: "+fullnumber;
+        AlertDialog.Builder alertDialog= new AlertDialog.Builder(this);
+        View v= LayoutInflater.from(MainActivity.this).inflate(R.layout.country,null);
+        TextView countryTextV=v.findViewById(R.id.country);
+        TextView codeTextV=v.findViewById(R.id.code);
+        ImageView flagImage=v.findViewById(R.id.flagx);
+        alertDialog.setView(v);
+        if (flag!=null){
+            flagImage.setImageDrawable(flag);
+        }
+        countryTextV.setText(country);
+        codeTextV.setText(fullcode);
+        alertDialog.show();
+    }
     public String getCountry(int code) {
-        String ctr = "";
-        Drawable flag = getDrawable(R.drawable.us);
+        flag = getDrawable(R.drawable.us);
         if (code >= 0 && code <= 19) {
             ctr = "UPC-A compatible -  United States and  Canada";
             flag = getDrawable(R.drawable.us);
@@ -274,223 +298,223 @@ public class MainActivity extends AppCompatActivity {
             flag = getDrawable(R.drawable.cm);
         } else if (code == 618) {
             ctr = " Ivory Coast";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ci);
         } else if (code == 619) {
             ctr = " Tunisia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.tn);
         } else if (code == 620) {
             ctr = " Tanzania";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.tz);
         } else if (code == 621) {
             ctr = " Syria";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.sy);
         } else if (code == 622) {
             ctr = " Egypt";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.eg);
         } else if (code == 623) {
             ctr = " Brunei";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.bn);
         } else if (code == 624) {
             ctr = " Libya";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ly);
         } else if (code == 625) {
             ctr = " Jordan";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.jo);
         } else if (code == 626) {
             ctr = " Iran";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ir);
         } else if (code == 627) {
             ctr = " Kuwait";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.kw);
         } else if (code == 628) {
             ctr = " Saudi Arabia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.sa);
         } else if (code == 629) {
             ctr = " United Arab Emirates";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ae);
         } else if (code == 630) {
             ctr = " Qatar";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.qa);
         } else if (code >= 640 && code <= 649) {
             ctr = " Finland (sometimes used by Romanian manufacturers)";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.fi);
         } else if (code >= 690 && code <= 699) {
             ctr = " People's Republic of China";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.cn);
         } else if (code >= 700 && code <= 709) {
             ctr = " Norway";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.no);
         } else if (code == 729) {
             ctr = " Israel";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.il);
         } else if (code >= 730 && code <= 739) {
             ctr = " Sweden : EAN/GS1 Sweden";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.se);
         } else if (code == 740) {
             ctr = " Guatemala";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.gt);
         } else if (code == 741) {
             ctr = "	 El Salvador";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.sv);
         } else if (code == 742) {
             ctr = " Honduras";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.hn);
         } else if (code == 743) {
             ctr = " Nicaragua";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ni);
         } else if (code == 744) {
             ctr = " Costa Rica";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.cr);
         } else if (code == 745) {
             ctr = " Panama";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.pa);
         } else if (code == 746) {
             ctr = " Dominican Republic";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.dm);
         } else if (code == 750) {
             ctr = "	 Mexico";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.mx);
         } else if (code >= 754 && code <= 755) {
             ctr = " Canada";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ca);
         } else if (code == 759) {
             ctr = " Venezuela";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ve);
         } else if (code >= 760 && code <= 769) {
             ctr = "  Switzerland and  Liechtenstein";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ch);
         } else if (code >= 770 && code <= 771) {
             ctr = " Colombia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.co);
         } else if (code == 773) {
             ctr = "	 Uruguay";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.uy);
         } else if (code == 775) {
             ctr = "	 Peru";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.pe);
         } else if (code == 777) {
             ctr = "	 Bolivia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.bo);
         } else if (code >= 778 && code <= 779) {
             ctr = " Argentina";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ar);
         } else if (code == 780) {
             ctr = "	 Chile";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.cl);
         } else if (code == 784) {
             ctr = "	 Paraguay";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.py);
         } else if (code == 786) {
             ctr = "	 Ecuador";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.ec);
         } else if (code >= 789 && code <= 790) {
             ctr = " Brazil";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.br);
         } else if (code >= 800 && code <= 839) {
             ctr = " Italy,  San Marino and   Vatican City";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.it);
         } else if (code >= 840 && code <= 849) {
             ctr = " Spain and  Andorra";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.es);
         } else if (code == 850) {
             ctr = " Cuba";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.cu);
         } else if (code == 858) {
             ctr = " Slovakia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.sk);
         } else if (code == 859) {
             ctr = " Czech Republic";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.cz);
         } else if (code == 860) {
             ctr = "Serbia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.rs);
         } else if (code == 865) {
             ctr = " Mongolia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.mn);
         } else if (code == 867) {
             ctr = " North Korea";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.kr);
         } else if (code >= 868 && code <= 869) {
             ctr = " Turkey";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.tr);
         } else if (code >= 870 && code <= 879) {
             ctr = " Netherlands";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.nl);
         } else if (code == 880) {
             ctr = "	 South Korea";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.kp);
         } else if (code == 883) {
             ctr = " Myanmar";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.mm);
         } else if (code == 884) {
             ctr = "	 Cambodia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.kh);
         } else if (code == 885) {
             ctr = "	 Thailand";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.th);
         } else if (code == 888) {
             ctr = "	 Singapore";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.sg);
         } else if (code == 890) {
             ctr = " India";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.in);
         } else if (code == 893) {
             ctr = "	 Vietnam";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.vn);
         } else if (code == 896) {
             ctr = " Pakistan";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.pk);
         } else if (code == 899) {
             ctr = " Indonesia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.id);
         } else if (code >= 900 && code <= 919) {
             ctr = " Austria";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.at);
         } else if (code >= 930 && code <= 939) {
             ctr = " Australia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.au);
         } else if (code >= 940 && code <= 949) {
             ctr = " New Zealand";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.nz);
         } else if (code == 950) {
             ctr = "GS1 Global Office: Special applications";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code == 951) {
             ctr = "Used to issue General Manager Numbers for the EPC General Identifier (GID) scheme as defined by the EPC Tag Data Standard";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code == 952) {
             ctr = "Used for demonstrations and examples of the GS1 system";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code == 955) {
             ctr = "	 Malaysia";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.my);
         } else if (code == 958) {
             ctr = " Macau";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.mc);
         } else if (code >= 960 && code <= 961) {
             ctr = "GS1 UK Office: GTIN-8 allocations";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code >= 962 && code <= 969) {
             ctr = "GS1 Global Office: GTIN-8 allocations";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code == 977) {
             ctr = "Serial publications (ISSN)";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code >= 978 && code <= 979) {
             ctr = "Bookland (ISBN) – 979-0 used for sheet music (Musicland, ISMN-13, replaces deprecated ISMN M- numbers)";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code == 980) {
             ctr = "Refund receipts";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code >= 981 && code <= 984) {
             ctr = "GS1 coupon identification for common currency areas";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else if (code >= 990 && code <= 999) {
             ctr = "	GS1 coupon identification ";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         } else {
             ctr = "";
-            flag = getDrawable(R.drawable.ad);
+            flag = getDrawable(R.drawable.us);
         }
         return ctr.trim();
     }
