@@ -13,12 +13,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:elevation="4dp"
-            android:paddingTop="20px"
             android:background="@color/colorPrimary">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Scan Product Bar Code"
+                android:text="Open Bar Code Scanner"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:textSize="22sp"
