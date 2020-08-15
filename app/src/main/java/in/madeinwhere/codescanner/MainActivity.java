@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             IntentIntegrator integrator = new IntentIntegrator(this);
             integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
             integrator.setPrompt("Scan a barcode");
+            integrator.setOrientationLocked(true);
             integrator.setCameraId(0);  // Use a specific camera of the device
             integrator.setBeepEnabled(false);
             integrator.setBarcodeImageEnabled(true);
